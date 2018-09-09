@@ -11,6 +11,7 @@ AC_INIT([gntlisp], M4_PACKAGE_VERSION_STR(M4_PACKAGE_VERSION_MAJOR,M4_PACKAGE_VE
 AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
 
 AC_DEFINE([PACKAGE_VERSION_MAJOR], M4_PACKAGE_VERSION_MAJOR, [Major Version Value])
@@ -19,6 +20,7 @@ AC_DEFINE([PACKAGE_VERSION_PATCH], M4_PACKAGE_VERSION_PATCH, [Patch Version Valu
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_AR
 
 # Checks for libraries.
 
@@ -27,5 +29,10 @@ AC_PROG_CC
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
+AC_SEARCH_LIBS([dlopen], [dl], [], [
+  AC_MSG_ERROR([unable to find dlopen()])
+])
+
+LT_INIT([shared])
 
 AC_OUTPUT
