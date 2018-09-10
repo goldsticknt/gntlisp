@@ -20,6 +20,8 @@ AC_DEFINE([PACKAGE_VERSION_PATCH], M4_PACKAGE_VERSION_PATCH, [Patch Version Valu
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_LEX
+AC_PROG_YACC
 AM_PROG_AR
 
 # Checks for libraries.
