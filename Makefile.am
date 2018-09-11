@@ -3,7 +3,7 @@ AM_CFLAGS = -I include/
 AM_YFLAGS = -d
 
 BUILT_SOURCES=src/lexer.c
-CLEANFILES=ylwrap src/lexer.c
+CLEANFILES=src/lexer.c
 
 lib_LTLIBRARIES = libgntlisp.la
 bin_PROGRAMS = gntlisp
