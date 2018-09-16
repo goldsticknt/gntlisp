@@ -3,31 +3,41 @@
 #include <stdio.h>
 
 #include "gntlisp.h"
+#include "lisp-parser.h"
 
 #include "config.h"
 
-#define YYSTYPE int
-
-#define YY_INPUT(buf,result,max_size) \
-{ \
-    YYSTYPE c = getc(stdin); \
-    result = (c == EOF) ? YY_NULL : (buf[0] = c, 1); \
-}
+#define YYSTYPE union GNTLISP_YYSTYPE
 
 %}
 
 %option prefix="gntlisp_yy"
 %option outfile="lex.yy.c"
+%option header-file="lisp-scanner.h"
 %option reentrant
+%option bison-bridge
 
 %%
 
-\n return(2);
-. return(1);
+\(                         return(GNTLISP_LISP_TOKEN_OPENPAREN);
+\)                         return(GNTLISP_LISP_TOKEN_CLOSEPAREN);
+'                          return(GNTLISP_LISP_TOKEN_QUOTE);
+`                          return(GNTLISP_LISP_TOKEN_BACKQUOTE);
+@                          return(GNTLISP_LISP_TOKEN_UNQUOTE);
+[A-Za-z_+-][A-Za-z0-9_+-]* {
+  yylval->strValue = strdup(yytext);
+  return(GNTLISP_LISP_TOKEN_IDENTIFIER);
+}
+[0-9]+                     {
+  yylval->strValue = strdup(yytext);
+  return(GNTLISP_LISP_TOKEN_LITERAL);
+}
+[ \t\r\n]+                 return(GNTLISP_LISP_TOKEN_WHITESPACE);
 
 %%
 
-unsigned int gntlisp_scan(void)
+#if 0
+int gntlisp_scan(void)
 {
   YYSTYPE token;
   yyscan_t scanner;
@@ -38,9 +48,30 @@ unsigned int gntlisp_scan(void)
       token = gntlisp_yylex(scanner))
     printf("%d\n", token);
   gntlisp_yylex_destroy(scanner);
+
+  return(0);
+}
+#endif /* 0 */
+
+int gntlisp_parse(void)
+{
+  void * scanner;
+  int retVal;
+  
+  gntlisp_yylex_init(&scanner);
+  retVal = gntlisp_yyparse(scanner);
+  gntlisp_yylex_destroy(scanner);
+
+  return(retVal);
 }
 
 int gntlisp_yywrap(yyscan_t yyscan)
 {
-	return(1);
+  return(1);
 }
+
+void gntlisp_yyerror(yyscan_t yyscan, char const *s)
+{
+  fprintf(stderr, "error: %s\n", s);
+}
+
