@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #include "gntlisp.h"
-#include "lisp-parser.h"
+#include "gntlisp-parser.h"
 
 #include "config.h"
 
@@ -13,7 +13,7 @@
 
 %option prefix="gntlisp_yy"
 %option outfile="lex.yy.c"
-%option header-file="lisp-scanner.h"
+%option header-file="gntlisp-scanner.h"
 %option reentrant
 %option bison-bridge
 

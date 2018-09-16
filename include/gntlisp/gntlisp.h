@@ -12,7 +12,7 @@ enum {
 	GNTLISP_LISP_TOKEN_LITERAL
 };
 #else
-#include "lisp-parser.h"
+#include "gntlisp-parser.h"
 #endif /* 0 */
 
 unsigned int gntlisp_get_version(void);
