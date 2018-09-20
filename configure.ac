@@ -24,6 +24,9 @@ AC_PROG_LEX
 AC_PROG_YACC
 AM_PROG_AR
 
+AC_CHECK_TOOL([SPLINT],[splint],[splint],[])
+AM_CONDITIONAL([HAVE_SPLINT],[test x$SPLINT != x])
+
 # Checks for libraries.
 
 # Checks for header files.
@@ -37,4 +40,4 @@ AC_SEARCH_LIBS([dlopen], [dl], [], [
 
 LT_INIT([shared])
 
-AC_OUTPUT
+AC_OUTPUT([tests/testdefs.sh])
