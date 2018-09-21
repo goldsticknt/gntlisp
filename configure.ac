@@ -40,4 +40,15 @@ AC_SEARCH_LIBS([dlopen], [dl], [], [
 
 LT_INIT([shared])
 
-AC_OUTPUT([tests/testdefs.sh])
+AC_OUTPUT([
+tests/testdefs.sh
+tests/splint/000.sh
+])
+
+# Mark test scripts executable if present.
+for test_script in tests/splint/000.sh; do
+	if test -f "$test_script"; then
+		chmod a+x "$test_script"
+	fi
+done
+
