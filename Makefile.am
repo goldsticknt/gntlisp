@@ -32,7 +32,7 @@ libgntlisp_la_SOURCES+=src/gntlisp/gntlisp-scanner.l
 @top_builddir@/src/gntlisp/gntlisp-scanner.c: @top_srcdir@/src/gntlisp/gntlisp-scanner.l
 	$(AM_V_LEX)$(am__skiplex) $(SHELL) $(YLWRAP) $< $(LEX_OUTPUT_ROOT).c $@ `echo $@ | sed -e 's/^.*\///' | $(am__yacc_c2h)` `echo $@ | $(am__yacc_c2h)` -- $(LEXCOMPILE)
 
-gntlisp_SOURCES=src/main.c
+gntlisp_SOURCES=src/gntrepl/gntrepl_main.c
 gntlisp_LDADD=libgntlisp.la
 
 TESTS=

@@ -6,7 +6,7 @@ retval=0
 
 [ -z "$SPLINT" ] && retval=77
 if [ "$retval" = 0 ]; then
-	"$SPLINT" $SPLINTARGS "${top_srcdir}/src/main.c"
+	"$SPLINT" $SPLINTARGS "${top_srcdir}/src/gntrepl/gntrepl_main.c"
 	retval="$?"
 fi
 
