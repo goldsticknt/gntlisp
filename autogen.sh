@@ -17,6 +17,7 @@ else
 	cd "$top_srcdir"
 
 	autoheader
+	echo '#include "config.lh"' >> config.h.in
 	aclocal
 	libtoolize -c
 	automake -a -c

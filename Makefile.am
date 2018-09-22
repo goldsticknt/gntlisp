@@ -1,11 +1,17 @@
 ACLOCAL_AMFLAGS = -I m4
 AM_CFLAGS=
-AM_CFLAGS+=-I@top_srcdir@/include/
-AM_CFLAGS+=-I@top_srcdir@/include/gntlisp/
-AM_CFLAGS+=-I@top_srcdir@/src/
-AM_CFLAGS+=-I@top_srcdir@/src/gntlisp/
 AM_CFLAGS+=-I@top_builddir@/src/
 AM_CFLAGS+=-I@top_builddir@/src/gntlisp/
+AM_CFLAGS+=-I@top_builddir@/src/gntrepl/
+AM_CFLAGS+=-I@top_builddir@/include/
+AM_CFLAGS+=-I@top_builddir@/include/gntlisp/
+AM_CFLAGS+=-I@top_builddir@/include/gntrepl/
+AM_CFLAGS+=-I@top_srcdir@/src/
+AM_CFLAGS+=-I@top_srcdir@/src/gntlisp/
+AM_CFLAGS+=-I@top_srcdir@/src/gntrepl/
+AM_CFLAGS+=-I@top_srcdir@/include/
+AM_CFLAGS+=-I@top_srcdir@/include/gntlisp/
+AM_CFLAGS+=-I@top_srcdir@/include/gntrepl/
 
 AM_YFLAGS=-d
 

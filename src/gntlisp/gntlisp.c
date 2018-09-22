@@ -1,8 +1,10 @@
+#define GNTLISP_C
+
 #include <stdio.h>
 
-#include "gntlisp.h"
-
 #include "config.h"
+
+#include <gntlisp.h>
 
 unsigned int gntlisp_get_version(void)
 {
