@@ -1,6 +1,0 @@
-/*@constant char * PACKAGE_NAME="@PACKAGE_NAME@" @*/
-/*@constant unsigned int PACKAGE_VERSION_MAJOR=@PACKAGE_VERSION_MAJOR@U @*/
-/*@constant unsigned int PACKAGE_VERSION_MINOR=@PACKAGE_VERSION_MINOR@U @*/
-/*@constant unsigned int PACKAGE_VERSION_PATCH=@PACKAGE_VERSION_PATCH@U @*/
-/*@constant char * VERSION="@VERSION@"; @*/
-

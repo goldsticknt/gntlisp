@@ -17,13 +17,10 @@ enum {
 #endif /* 0 */
 #endif /* S_SPLINT_S */
 
-#ifdef GNTLISP_C
-#define LINKAGE_MODULE_LOCAL
-#else /* GNTLISP_C */
-#define LINKAGE_MODULE_LOCAL extern
+#ifndef GNTLISP_C
+/*@external@*/ extern
 #endif /* GNTLISP_C */
-
-LINKAGE_MODULE_LOCAL unsigned int gntlisp_get_version(void)
+unsigned int gntlisp_get_version(void)
 /*@modifies nothing; @*/;
 
 #ifndef S_SPLINT_S

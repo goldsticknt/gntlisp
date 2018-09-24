@@ -1,0 +1,6 @@
+constant char * PACKAGE_NAME="@PACKAGE_NAME@";
+constant unsigned int PACKAGE_VERSION_MAJOR=@PACKAGE_VERSION_MAJOR@;
+constant unsigned int PACKAGE_VERSION_MINOR=@PACKAGE_VERSION_MINOR@;
+constant unsigned int PACKAGE_VERSION_PATCH=@PACKAGE_VERSION_PATCH@;
+constant char * VERSION="@VERSION@";
+

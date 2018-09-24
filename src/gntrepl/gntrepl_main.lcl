@@ -1,0 +1,6 @@
+imports <stdio> ;
+
+int main(/*@unused@*/ int argc, /*@unused@*/ char *argv[]) fileSystem; FILE *stdout;
+{
+  modifies *stdout^, fileSystem;
+}

@@ -6,7 +6,11 @@ retval=0
 
 [ -z "$SPLINT" ] && retval=77
 if [ "$retval" = 0 ]; then
-	"$SPLINT" $SPLINTARGS "${top_srcdir}/src/gntrepl/gntrepl_main.c"
+	$TRACING "$SPLINT" $SPLINTARGS \
+		"${top_srcdir}/src/gntrepl/gntrepl_main.c" \
+		"${top_srcdir}/src/gntrepl/gntrepl_main.lcl" \
+		"${top_builddir}/include/config.lcl" \
+		"${top_srcdir}/src/gntlisp/gntlisp.lcl"
 	retval="$?"
 fi
 

@@ -6,6 +6,9 @@ m4_define([M4_PACKAGE_VERSION_MAJOR], [0])
 m4_define([M4_PACKAGE_VERSION_MINOR], [0])
 m4_define([M4_PACKAGE_VERSION_PATCH], [1])
 m4_define([M4_PACKAGE_VERSION_STR], [$1.$2.$3])
+
+m4_define([M4_TYPED], [$1$2])
+
 # AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 AC_INIT([gntlisp], M4_PACKAGE_VERSION_STR(M4_PACKAGE_VERSION_MAJOR,M4_PACKAGE_VERSION_MINOR,M4_PACKAGE_VERSION_PATCH), [goldsticknt@goldsticknt.com])
 AC_CONFIG_SRCDIR([src/gntrepl/gntrepl_main.c])
@@ -14,12 +17,12 @@ AC_CONFIG_FILES([Makefile])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
 
-AC_DEFINE([PACKAGE_VERSION_MAJOR], M4_PACKAGE_VERSION_MAJOR, [Major Version Value])
-AC_SUBST([PACKAGE_VERSION_MAJOR], M4_PACKAGE_VERSION_MAJOR)
-AC_DEFINE([PACKAGE_VERSION_MINOR], M4_PACKAGE_VERSION_MINOR, [Minor Version Value])
-AC_SUBST([PACKAGE_VERSION_MINOR], M4_PACKAGE_VERSION_MINOR)
-AC_DEFINE([PACKAGE_VERSION_PATCH], M4_PACKAGE_VERSION_PATCH, [Patch Version Value])
-AC_SUBST([PACKAGE_VERSION_PATCH], M4_PACKAGE_VERSION_PATCH)
+AC_DEFINE([PACKAGE_VERSION_MAJOR], M4_TYPED(M4_PACKAGE_VERSION_MAJOR,[U]), [Major Version Value])
+AC_SUBST([PACKAGE_VERSION_MAJOR], M4_TYPED(M4_PACKAGE_VERSION_MAJOR,[U]))
+AC_DEFINE([PACKAGE_VERSION_MINOR], M4_TYPED(M4_PACKAGE_VERSION_MINOR,[U]), [Minor Version Value])
+AC_SUBST([PACKAGE_VERSION_MINOR], M4_TYPED(M4_PACKAGE_VERSION_MINOR,[U]))
+AC_DEFINE([PACKAGE_VERSION_PATCH], M4_TYPED(M4_PACKAGE_VERSION_PATCH,[U]), [Patch Version Value])
+AC_SUBST([PACKAGE_VERSION_PATCH], M4_TYPED(M4_PACKAGE_VERSION_PATCH,[U]))
 
 # Checks for programs.
 AC_PROG_CC
@@ -44,10 +47,14 @@ AC_SEARCH_LIBS([dlopen], [dl], [], [
 LT_INIT([shared])
 
 AC_OUTPUT([
-include/config.lh
+include/config.lcl
 tests/testdefs.sh
 tests/splint/000.sh
 ])
+
+# Patch header files with annotations.
+patch < "$srcdir/config.h.patch"
+echo "/*@+constuse@*/" >> "config.h"
 
 # Mark test scripts executable if present.
 for test_script in tests/splint/000.sh; do

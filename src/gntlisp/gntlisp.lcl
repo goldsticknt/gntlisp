@@ -1,0 +1,9 @@
+unsigned int gntlisp_get_version(void)
+{
+  modifies nothing;
+  /* ensures (result & 0xFFU) = PACKAGE_VERSION_PATCH /\
+      (result & 0xFF00U) = (PACKAGE_VERSION_MINOR << 8) /\
+      (result & 0xFF0000U) = (PACKAGE_VERSION_MAJOR << 16);
+  */
+}
+
