@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. ./tests/testdefs.sh
+
+retval=0
+
+[ -z "$VALGRIND" ] && retval=77
+if [ "$retval" = 0 ]; then
+	echo | ./libtool --mode=execute "$VALGRIND" --leak-check=full ./gntlisp
+	retval="$?"
+fi
+
+exit "$retval"

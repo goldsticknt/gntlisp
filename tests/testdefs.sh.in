@@ -9,6 +9,7 @@ abs_builddir="@abs_builddir@"
 
 SPLINT="@SPLINT@"
 PATCH="@PATCH@"
+VALGRIND="@VALGRIND@"
 
 SPLINTARGS="-strict -ansi-strict-lib"
 #SPLINTARGS="-strict -posix-strict-lib"

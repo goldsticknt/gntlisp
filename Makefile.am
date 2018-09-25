@@ -27,6 +27,7 @@ CLEANFILES+=@top_builddir@/src/gntlisp/gntlisp-parser.h
 
 DISTCLEANFILES=@top_builddir@/tests/testdefs.sh
 DISTCLEANFILES+=@top_builddir@/tests/splint/000.sh
+DISTCLEANFILES+=@top_builddir@/tests/valgrind/000.sh
 
 lib_LTLIBRARIES=libgntlisp.la
 bin_PROGRAMS=gntlisp
@@ -48,4 +49,5 @@ TESTS=
 if HAVE_SPLINT
 TESTS+=tests/splint/000.sh
 endif
+TESTS+=tests/valgrind/000.sh
 

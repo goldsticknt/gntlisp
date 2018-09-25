@@ -36,6 +36,9 @@ AM_CONDITIONAL([HAVE_SPLINT],[test x$SPLINT != x])
 AC_CHECK_TOOL([PATCH],[patch],[patch],[])
 AM_CONDITIONAL([HAVE_PATCH],[test x$PATCH != x])
 
+AC_CHECK_TOOL([VALGRIND],[valgrind],[valgrind],[])
+AM_CONDITIONAL([HAVE_VALGRIND],[test x$VALGRIND != x])
+
 # Checks for libraries.
 
 # Checks for header files.
@@ -53,6 +56,7 @@ AC_OUTPUT([
 include/config.lcl
 tests/testdefs.sh
 tests/splint/000.sh
+tests/valgrind/000.sh
 ])
 
 # Patch header files with annotations.
@@ -60,7 +64,7 @@ $PATCH < "$srcdir/config.h.patch"
 echo "/*@+constuse@*/" >> "config.h"
 
 # Mark test scripts executable if present.
-for test_script in tests/splint/000.sh; do
+for test_script in tests/splint/000.sh tests/valgrind/000.sh; do
 	if test -f "$test_script"; then
 		chmod a+x "$test_script"
 	fi
