@@ -60,7 +60,7 @@ tests/valgrind/000.sh
 ], [
 
 # Patch header files with annotations.
-$PATCH < "$srcdir/config.h.patch"
+"$PATCH" < "$srcdir/config.h.patch"
 echo "/*@+constuse@*/" >> "config.h"
 
 # Mark test scripts executable if present.
