@@ -46,8 +46,6 @@ CLEANFILES+=@top_srcdir@/src/gntrepl/gntrepl_main.lcs
 gntlisp_LDADD=libgntlisp.la
 
 TESTS=
-if HAVE_SPLINT
 TESTS+=tests/splint/000.sh
-endif
 TESTS+=tests/valgrind/000.sh
 
