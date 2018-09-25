@@ -57,7 +57,7 @@ include/config.lcl
 tests/testdefs.sh
 tests/splint/000.sh
 tests/valgrind/000.sh
-])
+], [
 
 # Patch header files with annotations.
 $PATCH < "$srcdir/config.h.patch"
@@ -69,4 +69,8 @@ for test_script in tests/splint/000.sh tests/valgrind/000.sh; do
 		chmod a+x "$test_script"
 	fi
 done
+
+],
+PATCH="$PATCH"
+srcdir="$srcdir")
 
