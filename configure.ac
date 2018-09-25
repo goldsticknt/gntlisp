@@ -33,6 +33,9 @@ AM_PROG_AR
 AC_CHECK_TOOL([SPLINT],[splint],[splint],[])
 AM_CONDITIONAL([HAVE_SPLINT],[test x$SPLINT != x])
 
+AC_CHECK_TOOL([PATCH],[patch],[patch],[])
+AM_CONDITIONAL([HAVE_PATCH],[test x$PATCH != x])
+
 # Checks for libraries.
 
 # Checks for header files.
@@ -53,7 +56,7 @@ tests/splint/000.sh
 ])
 
 # Patch header files with annotations.
-patch < "$srcdir/config.h.patch"
+$PATCH < "$srcdir/config.h.patch"
 echo "/*@+constuse@*/" >> "config.h"
 
 # Mark test scripts executable if present.

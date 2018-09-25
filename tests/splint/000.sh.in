@@ -5,6 +5,7 @@
 retval=0
 
 [ -z "$SPLINT" ] && retval=77
+[ -z "$PATCH" ] && retval=77
 if [ "$retval" = 0 ]; then
 	$TRACING "$SPLINT" $SPLINTARGS \
 		"${top_srcdir}/src/gntrepl/gntrepl_main.c" \

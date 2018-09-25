@@ -8,6 +8,8 @@ top_builddir="${testdir}/@top_builddir@"
 abs_builddir="@abs_builddir@"
 
 SPLINT="@SPLINT@"
+PATCH="@PATCH@"
+
 SPLINTARGS="-strict -ansi-strict-lib"
 #SPLINTARGS="-strict -posix-strict-lib"
 SPLINTARGS="${SPLINTARGS} -I${top_builddir}"
