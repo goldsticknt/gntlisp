@@ -36,6 +36,8 @@ AM_CONDITIONAL([HAVE_SPLINT],[test x$SPLINT != x])
 # Checks for libraries.
 
 # Checks for header files.
+AC_CHECK_HEADERS([stdlib.h])
+AC_CHECK_HEADERS([string.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
