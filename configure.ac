@@ -12,7 +12,7 @@ m4_define([M4_TYPED], [$1$2])
 # AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 AC_INIT([gntlisp], M4_PACKAGE_VERSION_STR(M4_PACKAGE_VERSION_MAJOR,M4_PACKAGE_VERSION_MINOR,M4_PACKAGE_VERSION_PATCH), [goldsticknt@goldsticknt.com])
 AC_CONFIG_SRCDIR([src/gntrepl/gntrepl_main.c])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([config.h.in])
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror subdir-objects])
@@ -53,10 +53,6 @@ include/config.lcl
 tests/testdefs.sh
 tests/splint/000.sh
 ])
-
-# Patch header files with annotations.
-patch < "$srcdir/config.h.patch"
-echo "/*@+constuse@*/" >> "config.h"
 
 # Mark test scripts executable if present.
 for test_script in tests/splint/000.sh; do

@@ -15,9 +15,6 @@ AM_CFLAGS+=-I@top_srcdir@/include/gntrepl/
 
 AM_YFLAGS=-d
 
-EXTRA_DIST=config.h.patch
-EXTRA_DIST+=tests/splint/0.sh
-
 BUILT_SOURCES=src/gntlisp/gntlisp-scanner.c
 BUILT_SOURCES+=src/gntlisp/gntlisp-parser.c
 CLEANFILES=@top_builddir@/src/gntlisp/gntlisp-scanner.c
@@ -39,10 +36,24 @@ libgntlisp_la_SOURCES+=src/gntlisp/gntlisp-parser.y
 libgntlisp_la_SOURCES+=src/gntlisp/gntlisp-scanner.l
 @top_builddir@/src/gntlisp/gntlisp-scanner.c: @top_srcdir@/src/gntlisp/gntlisp-scanner.l
 	$(AM_V_LEX)$(am__skiplex) $(SHELL) $(YLWRAP) $< $(LEX_OUTPUT_ROOT).c $@ `echo $@ | sed -e 's/^.*\///' | $(am__yacc_c2h)` `echo $@ | $(am__yacc_c2h)` -- $(LEXCOMPILE)
+EXTRA_libgntlisp_la_DEPENDENCIES=config.h
 
 gntlisp_SOURCES=src/gntrepl/gntrepl_main.c
 CLEANFILES+=@top_srcdir@/src/gntrepl/gntrepl_main.lcs
+
+EXTRA_gntlisp_DEPENDENCIES=config.h
+
 gntlisp_LDADD=libgntlisp.la
+
+CLEANFILES+=@top_builddir@/config.h
+config.h: config.h.in
+	awk ' \
+		BEGINFILE { constuse=0; } \
+		(/^ *$$/ && (constuse==0)) { print "/*@-constuse@*/" } \
+		// { print $$0 } \
+		ENDFILE { print "/*@+constuse@*/" }' $^ > $@
+
+EXTRA_DIST=tests/splint/0.sh
 
 TESTS=
 if HAVE_SPLINT
