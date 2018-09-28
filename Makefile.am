@@ -47,6 +47,7 @@ EXTRA_gntlisp_DEPENDENCIES=config.h
 gntlisp_LDADD=libgntlisp.la
 
 CLEANFILES+=@top_builddir@/config.h
+BUILT_SOURCES+=config.h
 config.h: config.h.in
 	awk ' \
 		BEGINFILE { constuse=0; } \
