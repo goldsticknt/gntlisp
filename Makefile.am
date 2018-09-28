@@ -55,7 +55,9 @@ config.h: config.h.in
 		// { print $$0 } \
 		ENDFILE { print "/*@+constuse@*/" }' $^ > $@
 
-EXTRA_DIST=tests/splint/0.sh
+EXTRA_DIST=
+EXTRA_DIST+=tests/splint/000.sh
+EXTRA_DIST+=tests/valgrind/000.sh
 
 TESTS=
 TESTS+=tests/splint/000.sh
