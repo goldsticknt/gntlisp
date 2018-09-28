@@ -51,7 +51,7 @@ gntlisp_LDADD=libgntlisp.la
 CLEANFILES+=@top_builddir@/config.h
 BUILT_SOURCES+=config.h
 config.h: config.h.in
-	awk ' \
+	$(AWK) ' \
 		BEGINFILE { constuse=0; } \
 		(/^ *$$/ && (constuse==0)) { print "/*@-constuse@*/" } \
 		// { print $$0 } \
