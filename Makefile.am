@@ -29,6 +29,8 @@ DISTCLEANFILES+=@top_builddir@/tests/valgrind/000.sh
 lib_LTLIBRARIES=libgntlisp.la
 bin_PROGRAMS=gntlisp
 
+CLEANFILES+=@top_builddir@/include/config.lcs
+
 libgntlisp_la_SOURCES=src/gntlisp/gntlisp.c
 CLEANFILES+=@top_srcdir@/src/gntlisp/gntlisp.lcs
 
